@@ -27,13 +27,11 @@ import com.google.gwt.user.client.ui.RootPanel;
 public class HelloWorld implements EntryPoint {
 	private Button clickMeButton;
 	public void onModuleLoad() {
-		
 		RootPanel rootPanel = RootPanel.get();
-		
+
 		this.clickMeButton = new Button();
 		rootPanel.add(this.clickMeButton);
 		this.clickMeButton.setText("Click me!");
-		
 		this.clickMeButton.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
 				Window.alert("Hello, GWT World!");
