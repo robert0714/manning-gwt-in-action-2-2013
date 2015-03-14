@@ -190,7 +190,7 @@ public class BasicProject implements EntryPoint, ValueChangeHandler<String> {
 	private void insertLogo(){
 		// Create the logo image and prevent being able to drag it to browser location bar
 		// by overriding its onBrowserEvent method.
-		logo = new Image(GWT.getModuleBaseURL() + "../" + LOGO_IMAGE_NAME){
+		this.logo = new Image(GWT.getModuleBaseURL() + "../" + LOGO_IMAGE_NAME){
 			public void onBrowserEvent(Event evt){
 				// Comment out the next line to be able to drag logo to the browser location
 				// bar; leave it in to prevent the default browser action.
@@ -216,7 +216,7 @@ public class BasicProject implements EntryPoint, ValueChangeHandler<String> {
 		
 		// If the element is not null, then we've found it, so let's wrap it
 		if(el!=null){
-			search = Button.wrap(el);
+			this.search = Button.wrap(el);
 		} else {
 			// The search button is missing in the underlying HTML page, so we can't wrap it...
 			// Let's log the fact it is missing - in development mode this will appear 
@@ -224,8 +224,8 @@ public class BasicProject implements EntryPoint, ValueChangeHandler<String> {
 			GWT.log("The search button is missing in the underlying HTML page, so we can't wrap it...trying to create it instead");
 			// We should play safe and create it manually and throw it on the page somewhere - otherwise we risk having 
 			// null pointer exceptions elsewhere in our application as the button doesn't exist yet.
-			search = new Button("search");
-			RootPanel.get().add(search);
+			this.search = new Button("search");
+			RootPanel.get().add(this.search);
 		}
 	}
 
@@ -252,7 +252,7 @@ public class BasicProject implements EntryPoint, ValueChangeHandler<String> {
 		 *  (this effectively changes the token in the URL, which is detected and handled by 
 		 *  GWT's History sub-system.
 		 */
-		content.addSelectionHandler(new SelectionHandler<Integer>(){
+		this.content.addSelectionHandler(new SelectionHandler<Integer>(){
 			public void onSelection(SelectionEvent<Integer> event) {
 				// Determine the tab that has been selected by interrogating the event object.
 				Integer tabSelected = event.getSelectedItem();
@@ -268,7 +268,7 @@ public class BasicProject implements EntryPoint, ValueChangeHandler<String> {
 		 *  the user to type in a search term.  The TextBox where the user types search terms should 
 		 *  automatically gain focus to make it more user friendly.
 		 */ 
-		search.addClickHandler(new ClickHandler(){
+		this.search.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
 				FlowPanel qAnswer;
 				final TextBox searchTerm = new TextBox();
@@ -326,7 +326,7 @@ public class BasicProject implements EntryPoint, ValueChangeHandler<String> {
 		 * If the user moves mouse over feedback tab, change its style 
 		 * (increases its size and changes colour - styles are in BasicProject.css)
 		 */
-		feedback.addMouseOverHandler(new MouseOverHandler(){
+		this.feedback.addMouseOverHandler(new MouseOverHandler(){
 			public void onMouseOver(MouseOverEvent event) {
 				// Remove existing normal style
 				feedback.removeStyleName("normal");
@@ -375,25 +375,25 @@ public class BasicProject implements EntryPoint, ValueChangeHandler<String> {
 	private void buildTabContent(){
 		// Create the main content widget
 		// First retrieve the existing content for the pages from the HTML page
-		homePanel = new HTMLPanel(getContent(Pages.HOME.getText()));
-		productsPanel = new HTMLPanel(getContent(Pages.PRODUCTS.getText()));
-		contactPanel = new HTMLPanel(getContent(Pages.CONTACT.getText()));
+		this.homePanel = new HTMLPanel(getContent(Pages.HOME.getText()));
+		this.productsPanel = new HTMLPanel(getContent(Pages.PRODUCTS.getText()));
+		this.contactPanel = new HTMLPanel(getContent(Pages.CONTACT.getText()));
 		
 		// set the style of HTMLPanels
-		homePanel.addStyleName("htmlPanel");
-		productsPanel.addStyleName("htmlPanel");
-		contactPanel.addStyleName("htmlPanel");
+		this.homePanel.addStyleName("htmlPanel");
+		this.productsPanel.addStyleName("htmlPanel");
+		this.contactPanel.addStyleName("htmlPanel");
 		
 		// Create the tab panel widget
-		content = new TabLayoutPanel(20, Unit.PX);
+		this.content = new TabLayoutPanel(20, Unit.PX);
 
 		// Add the content we have just created to the tab panel widget
-		content.add(homePanel, Pages.HOME.getText());
-		content.add(productsPanel, Pages.PRODUCTS.getText());
-		content.add(contactPanel, Pages.CONTACT.getText());
+		this.content.add(this.homePanel, Pages.HOME.getText());
+		this.content.add(this.productsPanel, Pages.PRODUCTS.getText());
+		this.content.add(this.contactPanel, Pages.CONTACT.getText());
 		
 		// Indicate that we should show the HOME tab initially.
-		content.selectTab(DECK_HOME);
+		this.content.selectTab(DECK_HOME);
 	}
 
 	
@@ -402,14 +402,14 @@ public class BasicProject implements EntryPoint, ValueChangeHandler<String> {
 	 */
 	private void createFeedbackTab(){
 		// Create the FeedBack tab
-		feedback = new FocusPanel();
-		feedback.setStyleName("feedback");
-		feedback.addStyleName("normal");
+		this.feedback = new FocusPanel();
+		this.feedback.setStyleName("feedback");
+		this.feedback.addStyleName("normal");
 		// Create VerticalPanel that holds two labels "feed" and "back"
 		VerticalPanel text = new VerticalPanel();
 		text.add(new Label("Feed"));
 		text.add(new Label("Back"));
-		feedback.add(text);
+		this.feedback.add(text);
 	}
 
 	
@@ -418,10 +418,10 @@ public class BasicProject implements EntryPoint, ValueChangeHandler<String> {
 	 */
 	private void styleTabPanelUsingUIObject(){
 		// Set up the heights of the pages.
-		homePanel.setHeight("400px");
-		productsPanel.setHeight("400px");
-		contactPanel.setHeight("400px");
-		content.setHeight("420px");
+		this.homePanel.setHeight("400px");
+		this.productsPanel.setHeight("400px");
+		this.contactPanel.setHeight("400px");
+		this.content.setHeight("420px");
 	}
 	
 	/**
@@ -429,9 +429,9 @@ public class BasicProject implements EntryPoint, ValueChangeHandler<String> {
 	 */
 	private void styleButtonUsingDOM(){
 		// Set up some styling on the button
-		search.getElement().getStyle().setProperty("backgroundColor", "#ff0000");
-		search.getElement().getStyle().setProperty("border", "2px solid");
-		search.getElement().getStyle().setOpacity(0.7);
+		this.search.getElement().getStyle().setProperty("backgroundColor", "#ff0000");
+		this.search.getElement().getStyle().setProperty("border", "2px solid");
+		this.search.getElement().getStyle().setOpacity(0.7);
 	}
 	
 
@@ -528,20 +528,20 @@ public class BasicProject implements EntryPoint, ValueChangeHandler<String> {
 	 * Show the contact page - i.e. place a new label on the current screen
 	 */
 	private void showContact() {
-		content.selectTab(Pages.CONTACT.getVal());
+		this.content.selectTab(Pages.CONTACT.getVal());
 	}
 
 	/**
 	 * Show the home page - i.e. place a new label on the current screen
 	 */
 	private void showHomePage() {
-		content.selectTab(Pages.HOME.getVal());
+		this.content.selectTab(Pages.HOME.getVal());
 	}
 
 	/**
 	 * Show the products page - i.e. place a new label on the current screen
 	 */
 	private void showProducts() {
-		content.selectTab(Pages.PRODUCTS.getVal());
+		this.content.selectTab(Pages.PRODUCTS.getVal());
 	}
 }
