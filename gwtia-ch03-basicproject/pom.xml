@@ -8,35 +8,29 @@
 	<name>gwtia-ch03-basicproject</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<powermock.version>1.6.0</powermock.version>
-		<gwt.version>2.6.1</gwt.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
+		<gwt.version>2.9.0</gwt.version>
+		<java.version>11</java.version>
 	</properties>
 	<build>
 		<finalName>gwtia-ch03-basicproject</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-				</configuration>
+				<version>3.8.1</version> 
 			</plugin>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.5</version>
+				<version>3.3.1</version>
 				<configuration>
-					<version>3.0</version>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
-				<version>2.7.0</version>
-				<executions>
-					 
+				<version>2.9.0</version>
+				<executions>					 
 					<execution>
 						<goals>
 							<goal>compile</goal>
@@ -55,12 +49,9 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
+			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
-		
- 
-
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
@@ -74,5 +65,4 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
-
 </project>
